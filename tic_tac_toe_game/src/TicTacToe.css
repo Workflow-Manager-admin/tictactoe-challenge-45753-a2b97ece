@@ -1,0 +1,103 @@
+:root {
+  /* TicTacToe specific palette */
+  --ttt-primary: #ffffff;
+  --ttt-secondary: #000000;
+  --ttt-accent: #2196f3;
+}
+
+.tictactoe-main {
+  background: var(--ttt-primary);
+  color: var(--ttt-secondary);
+  border-radius: 18px;
+  box-shadow: 0 2px 16px 0 rgba(33,150,243,0.08);
+  max-width: 360px;
+  margin: 60px auto;
+  padding: 32px 28px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ttt-header {
+  margin-bottom: 18px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ttt-accent);
+  text-align: center;
+}
+
+.ttt-message {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ttt-secondary);
+  margin-bottom: 6px;
+  height: 32px;
+  text-align: center;
+  min-height: 18px;
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 64px);
+  grid-template-rows: repeat(3, 64px);
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.ttt-cell {
+  width: 64px;
+  height: 64px;
+  font-size: 2.1rem;
+  font-weight: bold;
+  color: var(--ttt-secondary);
+  background: var(--ttt-primary);
+  border: 2px solid var(--ttt-accent);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.2s;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ttt-cell.filled {
+  color: var(--ttt-accent);
+  cursor: default;
+}
+.ttt-cell:hover:not(:disabled) {
+  background: #f1f8ff;
+}
+
+.ttt-reset-btn {
+  margin-top: 10px;
+  background: var(--ttt-accent);
+  color: var(--ttt-primary);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 3px 0 rgba(33,150,243,0.09);
+  transition: background 0.13s;
+}
+.ttt-reset-btn:hover {
+  background: #1669bb;
+}
+
+@media (max-width: 420px) {
+  .tictactoe-main {
+    padding: 16px 4px 20px 4px;
+    max-width: 98vw;
+  }
+  .ttt-board {
+    grid-template-columns: repeat(3, 45px);
+    grid-template-rows: repeat(3, 45px);
+    gap: 5px;
+  }
+  .ttt-cell {
+    width: 44px;
+    height: 44px;
+    font-size: 1.35rem;
+  }
+}
