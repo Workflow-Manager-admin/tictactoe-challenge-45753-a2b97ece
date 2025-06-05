@@ -1,103 +1,195 @@
 :root {
-  /* TicTacToe specific palette */
-  --ttt-primary: #ffffff;
-  --ttt-secondary: #000000;
-  --ttt-accent: #2196f3;
+  /* TicTacToe RETRO palette */
+  --ttt-bg-dark: #2d004d;
+  --ttt-bg-purple: #47126b;
+  --ttt-grid-border: #39ff14;
+  --ttt-primary: #1b0033;
+  --ttt-accent1: #ff0080;
+  --ttt-accent2: #ffe600;
+  --ttt-accent3: #39ff14;
+  --ttt-cell-x: #ffe600;
+  --ttt-cell-o: #ff0080;
+  --ttt-btn-bg: #1ff9ef;
+  --ttt-btn-text: #260041;
+  --ttt-header-neon: #39ff14;
+  --ttt-reset-hover: #ff0080;
+  --ttt-shadow: 0 0 8px #ffe600, 0 0 14px #39ff14;
+  --ttt-font: 'Press Start 2P', 'VT323', 'Courier New', Courier, monospace;
 }
 
 .tictactoe-main {
-  background: var(--ttt-primary);
-  color: var(--ttt-secondary);
-  border-radius: 18px;
-  box-shadow: 0 2px 16px 0 rgba(33,150,243,0.08);
-  max-width: 360px;
+  background: linear-gradient(135deg, var(--ttt-bg-dark) 60%, var(--ttt-bg-purple) 100%);
+  color: #fff;
+  border: 6px double var(--ttt-grid-border);
+  border-radius: 22px;
+  box-shadow: 0 4px 40px 2px #0005, 0 0 16px #39ff14bb inset, var(--ttt-shadow);
+  max-width: 410px;
   margin: 60px auto;
-  padding: 32px 28px 28px 28px;
+  padding: 40px 32px 28px 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: var(--ttt-font);
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  position: relative;
+  overflow: hidden;
+  outline: 5px solid var(--ttt-accent1);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
 .ttt-header {
   margin-bottom: 18px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--ttt-accent);
+  font-size: 1.1rem;
+  color: var(--ttt-header-neon);
+  text-shadow:
+    0 0 8px var(--ttt-accent2),
+    0 0 12px var(--ttt-header-neon),
+    2px 2px 0px #0006;
   text-align: center;
+  font-family: var(--ttt-font);
+  border-bottom: 2px dashed var(--ttt-accent1);
+  padding-bottom: 7px;
+  letter-spacing: 0.13em;
+  font-weight: 700;
+  box-shadow: 0 1px 0 var(--ttt-header-neon);
 }
 
 .ttt-message {
-  font-size: 1.3rem;
+  font-size: 1.45rem;
+  font-family: var(--ttt-font);
   font-weight: 700;
-  color: var(--ttt-secondary);
-  margin-bottom: 6px;
-  height: 32px;
+  color: var(--ttt-accent2);
+  margin-bottom: 12px;
+  height: 40px;
+  letter-spacing: 0.18em;
   text-align: center;
-  min-height: 18px;
+  min-height: 24px;
+  text-shadow:
+    0 0 8px var(--ttt-accent2),
+    1px 1px 2px var(--ttt-accent1);
+  background: rgba(33, 0, 80, 0.30);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ttt-board {
   display: grid;
-  grid-template-columns: repeat(3, 64px);
-  grid-template-rows: repeat(3, 64px);
-  gap: 8px;
-  margin-bottom: 22px;
+  grid-template-columns: repeat(3, 68px);
+  grid-template-rows: repeat(3, 68px);
+  gap: 12px;
+  margin-bottom: 28px;
+  background: #0c001a;
+  border: 5px ridge var(--ttt-grid-border);
+  border-radius: 11px;
+  box-shadow: 0 0 18px 3px var(--ttt-accent1) inset, 0 0 10px 5px var(--ttt-accent3);
+  padding: 9px 9px 2px 9px;
 }
 
 .ttt-cell {
-  width: 64px;
-  height: 64px;
-  font-size: 2.1rem;
-  font-weight: bold;
-  color: var(--ttt-secondary);
-  background: var(--ttt-primary);
-  border: 2px solid var(--ttt-accent);
-  border-radius: 10px;
+  width: 68px;
+  height: 68px;
+  font-size: 2.3rem;
+  font-family: var(--ttt-font);
+  color: #fff;
+  background: linear-gradient(135deg, #24038e 60%, #241a73 100%);
+  border: 4px solid var(--ttt-accent3);
+  box-shadow: 0 0 8px var(--ttt-accent3);
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.15s, color 0.2s;
+  transition: background 0.1s, color 0.1s, box-shadow 0.08s;
   outline: none;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-shadow: 0 0 8px var(--ttt-accent2), 2px 2px 0px #0006;
 }
+
 .ttt-cell.filled {
-  color: var(--ttt-accent);
+  color: var(--ttt-accent2);
+  text-shadow: 0 0 12px var(--ttt-accent1), 2px 2px 0px #0009;
   cursor: default;
+  background: #28033a;
 }
+.ttt-cell.filled:disabled {
+  opacity: 0.84;
+}
+.ttt-cell.filled:after {
+  content: '';
+}
+
 .ttt-cell:hover:not(:disabled) {
-  background: #f1f8ff;
+  background: #2dbada;
+  border-color: var(--ttt-accent2);
+  box-shadow: 0 0 17px var(--ttt-accent2);
+  color: var(--ttt-accent2);
+}
+
+.ttt-cell:active:not(:disabled) {
+  background: #46039e;
+  border-color: var(--ttt-btn-bg);
+  box-shadow: 0 0 11px var(--ttt-btn-bg);
+}
+
+.ttt-cell:focus-visible {
+  outline: 2px dotted var(--ttt-btn-bg);
 }
 
 .ttt-reset-btn {
-  margin-top: 10px;
-  background: var(--ttt-accent);
-  color: var(--ttt-primary);
-  border: none;
-  border-radius: 6px;
-  padding: 10px 22px;
-  font-size: 1rem;
-  font-weight: 600;
+  margin-top: 14px;
+  background: var(--ttt-btn-bg);
+  color: var(--ttt-btn-text);
+  border: 3px double var(--ttt-accent1);
+  border-radius: 10px;
+  font-family: var(--ttt-font);
+  font-size: 1.08rem;
+  font-weight: 800;
+  box-shadow: 0 0 18px var(--ttt-btn-bg), 0 0 6px var(--ttt-accent3) inset;
+  padding: 12px 30px 12px 30px;
   cursor: pointer;
-  box-shadow: 0 0 3px 0 rgba(33,150,243,0.09);
-  transition: background 0.13s;
+  letter-spacing: 0.18em;
+  text-shadow: 0 0 9px #fff;
+  outline: 2px groove var(--ttt-accent3);
+  transition: background 0.12s, color 0.12s, box-shadow 0.12s;
+  text-transform: uppercase;
+  border-width: 4px;
 }
-.ttt-reset-btn:hover {
-  background: #1669bb;
+
+.ttt-reset-btn:hover, .ttt-reset-btn:focus-visible {
+  background: var(--ttt-reset-hover);
+  color: var(--ttt-accent2);
+  box-shadow: 0 0 22px var(--ttt-reset-hover), 0 0 12px var(--ttt-accent1) inset;
+  border-color: var(--ttt-header-neon);
+  text-shadow: 0 0 12px var(--ttt-accent2);
 }
 
 @media (max-width: 420px) {
   .tictactoe-main {
-    padding: 16px 4px 20px 4px;
-    max-width: 98vw;
+    padding: 8px 1.5vw 14px 1.5vw;
+    max-width: 99vw;
   }
   .ttt-board {
-    grid-template-columns: repeat(3, 45px);
-    grid-template-rows: repeat(3, 45px);
-    gap: 5px;
+    grid-template-columns: repeat(3, 42px);
+    grid-template-rows: repeat(3, 42px);
+    gap: 7px;
+    padding: 5px 5px 2px 5px;
   }
   .ttt-cell {
-    width: 44px;
-    height: 44px;
-    font-size: 1.35rem;
+    width: 41px;
+    height: 41px;
+    font-size: 1.04rem;
+    border-width: 2.5px;
+  }
+  .ttt-header, .ttt-message {
+    font-size: 0.81rem;
+  }
+  .ttt-reset-btn {
+    font-size: 0.84rem;
+    padding: 9px 10px 9px 10px;
+    border-width: 2px;
+    border-radius: 5px;
   }
 }

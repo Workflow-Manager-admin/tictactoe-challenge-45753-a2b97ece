@@ -86,6 +86,13 @@ function TicTacToe() {
           <button
             key={idx}
             className={`ttt-cell${cell ? " filled" : ""}`}
+            style={
+              cell === "X"
+                ? { color: "var(--ttt-cell-x)", textShadow: "0 0 14px var(--ttt-cell-x), 1px 1px 0 #ff0, 2px 2px 0 #000" }
+                : cell === "O"
+                ? { color: "var(--ttt-cell-o)", textShadow: "0 0 14px var(--ttt-cell-o), 1px 1px 0 #f0f, 2px 2px 0 #000" }
+                : {}
+            }
             onClick={() => handleClick(idx)}
             disabled={!!cell || !!winner}
             aria-label={`cell-${idx}`}
